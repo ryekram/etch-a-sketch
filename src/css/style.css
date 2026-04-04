@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+#App {
+    height: 100vh;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+.sketch__area {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+.grid__container {
+    /* height: ; */
+    width: 512px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.grid__cell {
+    background-color: #cacaca;
+    width: 32px;
+    height: 32px;
+}
