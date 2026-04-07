@@ -17,19 +17,16 @@ body {
 
 .sketch__area {
     width: 80%;
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
 }
 
 .grid__container {
-    /* height: ; */
-    width: 512px;
     display: flex;
     flex-wrap: wrap;
 }
 
 .grid__cell {
     background-color: #cacaca;
-    width: 32px;
-    height: 32px;
 }

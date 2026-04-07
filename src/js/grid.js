@@ -1,7 +1,16 @@
-export function gridInit(container) {
-    for (let index = 0; index < 256; index++) {
-        const cell = document.createElement("div")
-        cell.classList.add("grid__cell")
-        container.append(cell)
+export function gridRender(size = 16, container) {
+    const boardSize = 512;
+    const cellSize = boardSize / size;
+
+    container.textContent = '';
+    container.style.width = `${boardSize}px`;
+    container.style.height = `${boardSize}px`;
+
+    for (let index = 0; index < size * size; index++) {
+        const cell = document.createElement("div");
+        cell.style.width = `${cellSize}px`;
+        cell.style.height = `${cellSize}px`;
+        cell.classList.add("grid__cell");
+        container.append(cell);
     }
 }
