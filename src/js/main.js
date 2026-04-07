@@ -1,14 +1,10 @@
 import '/src/css/style.css'
-import { init } from './utils'
-import { gridInit } from './grid';
-import { hoverCell } from './control';
+import { elementsInit, handlePrompt, handleInit } from './handlers';
 
 document.addEventListener("DOMContentLoaded", (event) => {
-  const elements = init();
-  console.log(elements);
-  gridInit(elements.gridContainer)
-  hoverCell(elements.gridContainer)
+  handleInit()
 
-  console.log("hello")
+  let elements = elementsInit()
+  elements.promptButton.addEventListener("click", handlePrompt)
 })
 
