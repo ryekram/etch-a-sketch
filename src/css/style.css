@@ -4,6 +4,7 @@
 
 :root {
   ---outline-color: rgba(206, 206, 206, 0.705);
+  ---medium-color: rgba(168, 168, 168, 0.705);
   --box-shadow: 5px 3px 12px -1px rgba(175, 175, 175, 0.902);
 }
 
@@ -62,3 +63,26 @@ body {
   align-items: center;
   height: 512px;
 }
+
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0;
+  width: 100%;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid var(---medium-color);
+}
+
+.divider span {
+  padding: 0 10px;
+  color: var(---medium-color);
+  font-size: 0.8rem;
+}
+

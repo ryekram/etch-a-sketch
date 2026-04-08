@@ -2,13 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="./src/assets/eas_logo.png" />
     <link
       href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400&display=swap"
       rel="stylesheet"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>etch-a-sketch</title>
+    <title>Etch-a-Sketch</title>
   </head>
   <body>
     <div id="App">
@@ -25,6 +25,13 @@
           >
             Custom Size
           </button>
+          <div class="divider">
+            <span>or</span>
+          </div>
+        <div class="slider__container">
+          <span class="slider__span">16x16</span>
+          <input type="range" min="1" max="99" value="50" class="slider" id="grid__slider">
+        </div>
         </div>
 
         <div class="grid__container"></div>

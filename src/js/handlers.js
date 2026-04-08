@@ -15,6 +15,8 @@ export function elementsInit() {
     rainbowBtn: document.querySelector(".rainbow__btn"),
     eraserBtn: document.querySelector(".eraser__btn"),
     colorPicker: document.querySelector("#color__picker"),
+    gridSlider: document.querySelector("#grid__slider"),
+    sliderSpan: document.querySelector(".slider__span")
   };
 }
 
@@ -24,7 +26,8 @@ export function listeners() {
   elements.clearBtn.addEventListener("click", handleInit);
   elements.rainbowBtn.addEventListener("click", handleRainbow);
   elements.eraserBtn.addEventListener("click", handleEraser);
-  elements.colorPicker.addEventListener("change", handleColorPicker);
+  elements.colorPicker.addEventListener("input", handleColorPicker);
+  elements.gridSlider.addEventListener("input", handleSlider);
 }
 
 export function handleColorPicker(event) {
@@ -49,7 +52,6 @@ export function handleRainbow() {
 
 export function handleHover() {
   let cells = elements.gridContainer.querySelectorAll(".grid__cell");
-  console.log(state);
   cells.forEach((cell) => {
     cell.addEventListener("mouseenter", (events) => {
       if (state.IS_RAINBOW) {
@@ -103,5 +105,12 @@ export function handlePrompt() {
   // localStorage.setItem("size", size);
   elements.popOver.hidePopover();
   gridRender(state.GRID_SIZE, elements.gridContainer);
+  handleHover();
+}
+
+export function handleSlider(e) {
+  elements.sliderSpan.textContent = `${e.target.value}x${e.target.value}`
+  state.GRID_SIZE = e.target.value
+  gridRender(state.GRID_SIZE, elements.gridContainer)
   handleHover();
 }
