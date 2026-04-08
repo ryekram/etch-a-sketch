@@ -14,6 +14,7 @@ export function elementsInit() {
     clearBtn: document.querySelector(".clear__btn"),
     rainbowBtn: document.querySelector(".rainbow__btn"),
     eraserBtn: document.querySelector(".eraser__btn"),
+    colorPicker: document.querySelector("#color__picker"),
   };
 }
 
@@ -23,27 +24,31 @@ export function listeners() {
   elements.clearBtn.addEventListener("click", handleInit);
   elements.rainbowBtn.addEventListener("click", handleRainbow);
   elements.eraserBtn.addEventListener("click", handleEraser);
+  elements.colorPicker.addEventListener("change", handleColorPicker);
+}
+
+export function handleColorPicker(event) {
+  state.DEFAULT_COLOR = event.target.value;
+  handleHover();
 }
 
 export function handleEraser() {
+  elements.eraserBtn.classList.toggle("active__btn");
+  elements.rainbowBtn.classList.remove("active__btn");
   state.IS_RAINBOW = false;
-  state.DEFAULT_COLOR = '#f7f7f7';
-  handleHover(elements.gridContainer)
-  console.log(state, 'eraser');
+  state.IS_ERASER = !state.IS_ERASER;
+  handleHover();
 }
-
 
 export function handleRainbow() {
-  console.log(state.IS_RAINBOW);
-  if (state.IS_RAINBOW) {
-    state.IS_RAINBOW = false;
-  } else {
-    state.IS_RAINBOW = true;
-  }
+  elements.rainbowBtn.classList.toggle("active__btn");
+  elements.eraserBtn.classList.remove("active__btn");
+  state.IS_RAINBOW = !state.IS_RAINBOW;
+  state.IS_ERASER = false;
 }
 
-export function handleHover(elements, color = state.DEFAULT_COLOR) {
-  let cells = elements.querySelectorAll(".grid__cell");
+export function handleHover() {
+  let cells = elements.gridContainer.querySelectorAll(".grid__cell");
   console.log(state);
   cells.forEach((cell) => {
     cell.addEventListener("mouseenter", (events) => {
@@ -52,18 +57,18 @@ export function handleHover(elements, color = state.DEFAULT_COLOR) {
         const randomG = Math.floor(Math.random() * 256);
         const randomB = Math.floor(Math.random() * 256);
         cell.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`;
+      } else if(state.IS_ERASER) {
+        cell.style.backgroundColor = "#f7f7f7";
       } else {
-        cell.style.backgroundColor = color;
+        cell.style.backgroundColor = state.DEFAULT_COLOR;
       }
     });
   });
 }
 
 export function handleInit() {
-  // state = initState();
-  state.DEFAULT_COLOR = "#adadad"
-  gridRender(undefined, elements.gridContainer);
-  handleHover(elements.gridContainer);
+  gridRender(state.GRID_SIZE, elements.gridContainer);
+  handleHover();
   listeners();
 }
 
@@ -92,9 +97,11 @@ export function handlePrompt() {
   let size = elements.inputSize.value;
   let checker = validateInput(size);
   if (!checker) return;
-  state = initState()
-  localStorage.setItem("size", size);
+  state = initState();
+  state.GRID_SIZE = size;
+  elements.colorPicker.value = state.DEFAULT_COLOR;
+  // localStorage.setItem("size", size);
   elements.popOver.hidePopover();
-  gridRender(size, elements.gridContainer);
-  handleHover(elements.gridContainer);
+  gridRender(state.GRID_SIZE, elements.gridContainer);
+  handleHover();
 }

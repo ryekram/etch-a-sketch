@@ -8,6 +8,7 @@
   text-transform: uppercase;
   padding: 15px 20px;
   cursor: pointer;
+  transition: background-color 500ms, color 500ms;
 }
 
 .prompt__button {
@@ -22,4 +23,42 @@
   width: min(350px, 90%);
   padding: 15px 20px;
   white-space: nowrap;
+}
+#color__picker:active {
+  transition: transform 0.05s ease-in-out;
+  transform: scale(1);
+}
+
+#color__picker {
+  appearance: none;
+  width: 150px;
+  height: 100px;
+  padding: 10px;
+  border: none;
+  background-color: transparent;
+}
+
+#color__picker::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+#color__picker::-webkit-color-swatch {
+  border: none;
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+}
+
+.size-value {
+  margin-bottom: -20px;
+  font-size: 20px;
+}
+
+.btn:hover {
+    background-color: #8d8d8d;
+    color: #eee;
+}
+
+.active__btn {
+    background-color: #8d8d8d;
+    color: #eee;
 }
