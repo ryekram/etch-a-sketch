@@ -1,6 +1,5 @@
 {
   "name": "etch-a-sketch",
-  "homepage": "https://ryekram.github.io/etch-a-sketch",
   "version": "0.0.0",
   "private": true,
   "type": "module",
