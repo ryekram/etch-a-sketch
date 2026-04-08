@@ -1,3 +1,66 @@
 .modal {
-    background-color: red;
+  background-color: red;
+  /* width: 100%;
+    height: 100%; */
+}
+
+[popover]:popover-open {
+    display: flex;
+    opacity: 1;
+}
+
+[popover] {
+  font-size: 1.2rem;
+  /* Final state of the exit animation */
+  margin: auto; /* Required for alignment */
+  opacity: 0;
+  display: none;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  width: 350px;
+  height: 200px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  transition:
+    opacity 0.5s,
+    transform 0.5s,
+    overlay 0.5s allow-discrete,
+    display 0.5s allow-discrete;
+  /* Equivalent to
+  transition: all 0.7s allow-discrete; */
+}
+
+/* Needs to be included after the previous [popover]:popover-open
+   rule to take effect, as the specificity is the same */
+@starting-style {
+  [popover]:popover-open {
+    opacity: 0;
+  }
+}
+
+/* Transition for the popover's backdrop */
+
+[popover]::backdrop {
+  background-color: transparent;
+  transition:
+    display 0.5s allow-discrete,
+    overlay 0.5s allow-discrete,
+    background-color 0.5s;
+  /* Equivalent to
+  transition: all 0.7s allow-discrete; */
+}
+
+[popover]:popover-open::backdrop {
+  background-color: rgba(0, 0, 0, 0.315);
+}
+
+/* Nesting selectors (&) cannot represent pseudo-elements, so this 
+   starting-style rule cannot be nested. */
+
+@starting-style {
+  [popover]:popover-open::backdrop {
+    background-color: transparent;
+  }
 }

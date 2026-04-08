@@ -5,6 +5,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   handleInit()
 
   let elements = elementsInit()
-  elements.promptButton.addEventListener("click", handlePrompt)
+  // elements.promptButton.addEventListener("click", handlePrompt)
 })
 

@@ -1,0 +1,9 @@
+.input__base {
+  padding: 15px 20px;
+  border: none;
+  background-color: #eee;
+}
+.input__base::placeholder {
+  color: gray;
+  font-style: italic;
+}

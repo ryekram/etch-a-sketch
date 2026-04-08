@@ -1,5 +1,6 @@
 @import "components/button.css";
 @import "components/modal.css";
+@import "components/input.css";
 
 :root {
   --box-shadow: 5px 3px 12px -1px rgba(175, 175, 175, 0.902);
