@@ -1,60 +1,107 @@
-import {  gridRender } from './grid';
+import { gridRender } from "./grid";
+import { initState } from "./utils";
+let elements = elementsInit();
+let state = initState();
 
-export function handleHover(elements) {
-  let cells = elements.querySelectorAll(".grid__cell");
+export function elementsInit() {
+  return {
+    gridContainer: document.querySelector(".grid__container"),
+    promptButton: document.querySelector(".prompt__button"),
+    popOver: document.querySelector("#mypopover"),
+    inputSize: document.querySelector("#input__size"),
+    submitBtn: document.querySelector(".submit__btn"),
+    errorSpan: document.querySelector(".error__size-span"),
+    clearBtn: document.querySelector(".clear__btn"),
+    rainbowBtn: document.querySelector(".rainbow__btn"),
+    eraserBtn: document.querySelector(".eraser__btn"),
+    colorPicker: document.querySelector("#color__picker"),
+  };
+}
+
+export function listeners() {
+  elements.promptButton.addEventListener("click", clearInputs);
+  elements.submitBtn.addEventListener("click", handlePrompt);
+  elements.clearBtn.addEventListener("click", handleInit);
+  elements.rainbowBtn.addEventListener("click", handleRainbow);
+  elements.eraserBtn.addEventListener("click", handleEraser);
+  elements.colorPicker.addEventListener("change", handleColorPicker);
+}
+
+export function handleColorPicker(event) {
+  state.DEFAULT_COLOR = event.target.value;
+  handleHover();
+}
+
+export function handleEraser() {
+  elements.eraserBtn.classList.toggle("active__btn");
+  elements.rainbowBtn.classList.remove("active__btn");
+  state.IS_RAINBOW = false;
+  state.IS_ERASER = !state.IS_ERASER;
+  handleHover();
+}
+
+export function handleRainbow() {
+  elements.rainbowBtn.classList.toggle("active__btn");
+  elements.eraserBtn.classList.remove("active__btn");
+  state.IS_RAINBOW = !state.IS_RAINBOW;
+  state.IS_ERASER = false;
+}
+
+export function handleHover() {
+  let cells = elements.gridContainer.querySelectorAll(".grid__cell");
+  console.log(state);
   cells.forEach((cell) => {
     cell.addEventListener("mouseenter", (events) => {
-      cell.style.background = "#adadad";
+      if (state.IS_RAINBOW) {
+        const randomR = Math.floor(Math.random() * 256);
+        const randomG = Math.floor(Math.random() * 256);
+        const randomB = Math.floor(Math.random() * 256);
+        cell.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`;
+      } else if(state.IS_ERASER) {
+        cell.style.backgroundColor = "#f7f7f7";
+      } else {
+        cell.style.backgroundColor = state.DEFAULT_COLOR;
+      }
     });
   });
 }
 
-export function elementsInit() {
-    return {
-        gridContainer: document.querySelector(".grid__container"),
-        promptButton: document.querySelector(".prompt__button"),
-        popOver: document.querySelector('#mypopover'),
-        inputSize: document.querySelector("#input__size"),
-        submitBtn: document.querySelector(".submit__btn"),
-        errorSpan: document.querySelector(".error__size-span")
-    }
-}
-
 export function handleInit() {
-  let elements = elementsInit();
-  gridRender(undefined,elements.gridContainer)
-  handleHover(elements.gridContainer)
-  // gridInit(elements.gridContainer);
+  gridRender(state.GRID_SIZE, elements.gridContainer);
+  handleHover();
+  listeners();
 }
 
 export function validateInput(size) {
-  let elements = elementsInit();
   if (!size || isNaN(size)) {
     elements.inputSize.style.border = "1px solid #ff7575";
     elements.errorSpan.textContent = "Please input a valid number";
     return false;
   }
-  if(size >= 100 || size <= 0) {
-    elements.inputSize.style.border = "1px solid #ff7575" 
-    elements.errorSpan.textContent = "Please input value below 100 or greater than 0"
+  if (size >= 100 || size <= 0) {
+    elements.inputSize.style.border = "1px solid #ff7575";
+    elements.errorSpan.textContent =
+      "Please input value below 100 or greater than 0";
     return false;
   }
   return true;
 }
 
 export function clearInputs() {
-  let elements = elementsInit();
-  elements.inputSize.style.border = "none"
-  elements.inputSize.value = "" 
-  elements.errorSpan.textContent = ""
+  elements.inputSize.style.border = "none";
+  elements.inputSize.value = "";
+  elements.errorSpan.textContent = "";
 }
 
 export function handlePrompt() {
-  let elements = elementsInit()
   let size = elements.inputSize.value;
   let checker = validateInput(size);
-  if(!checker) return;
+  if (!checker) return;
+  state = initState();
+  state.GRID_SIZE = size;
+  elements.colorPicker.value = state.DEFAULT_COLOR;
+  // localStorage.setItem("size", size);
   elements.popOver.hidePopover();
-  gridRender(size, elements.gridContainer) 
-  handleHover(elements.gridContainer)
+  gridRender(state.GRID_SIZE, elements.gridContainer);
+  handleHover();
 }
