@@ -7,3 +7,14 @@
   color: gray;
   font-style: italic;
 }
+
+.input__group {
+    display: flex;
+    flex-direction: column;
+}
+
+.error__size-span {
+    color: #ff7575;
+    font-size: .8rem;
+    font-weight: 100;
+}

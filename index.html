@@ -9,13 +9,18 @@
   <body>
     <div id="App">
       <div class="sketch__area">
-        <button popovertarget="mypopover" class="btn prompt__button">Custom Size</button>
+        <button popovertarget="mypopover" class="btn prompt__button">
+          Custom Size
+        </button>
         <div class="grid__container"></div>
       </div>
     </div>
     <div popover="auto" id="mypopover">
-      <input type="text" class="input__base" placeholder="Ex: 24, 64">
-      <button class="btn">Submit</button>
+      <div class="input__group">
+        <input type="text" id="input__size" class="input__base" placeholder="Ex: 24, 64" />
+        <span class="error__size-span"></span>
+      </div>
+      <button class="btn submit__btn">Submit</button>
     </div>
     <script type="module" src="/src/js/main.js"></script>
   </body>
