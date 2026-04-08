@@ -1,4 +1,4 @@
-import '/src/css/style.css'
+import '../css/style.css'
 import { elementsInit, handlePrompt, handleInit, clearInputs } from './handlers';
 import { gridRender } from './grid';
 
