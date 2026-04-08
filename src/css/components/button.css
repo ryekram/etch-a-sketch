@@ -1,0 +1,12 @@
+.btn {
+  border: 1px solid #8d8d8d;
+  border: 1px solid #adadad;
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+  background-color: #eee;
+  color: #8d8d8d;
+  text-transform: uppercase;
+  padding: 15px 20px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
