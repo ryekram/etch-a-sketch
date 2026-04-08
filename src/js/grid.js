@@ -1,16 +1,24 @@
 export function gridRender(size = 16, container) {
-    const boardSize = 512;
-    const cellSize = boardSize / size;
+  let finalSize;
+  let storageChecker = localStorage.getItem("size");
+  if (storageChecker) {
+    finalSize = storageChecker;
+  } else {
+    localStorage.setItem("size", size);
+    finalSize = size;
+  }
 
-    container.textContent = '';
-    container.style.width = `${boardSize}px`;
-    container.style.height = `${boardSize}px`;
+  const boardSize = 512;
+  const cellSize = boardSize / finalSize;
+  container.textContent = "";
+  container.style.width = `${boardSize}px`;
+  container.style.height = `${boardSize}px`;
 
-    for (let index = 0; index < size * size; index++) {
-        const cell = document.createElement("div");
-        cell.style.width = `${cellSize}px`;
-        cell.style.height = `${cellSize}px`;
-        cell.classList.add("grid__cell");
-        container.append(cell);
-    }
+  for (let index = 0; index < finalSize * finalSize; index++) {
+    const cell = document.createElement("div");
+    cell.style.width = `${cellSize}px`;
+    cell.style.height = `${cellSize}px`;
+    cell.classList.add("grid__cell");
+    container.append(cell);
+  }
 }

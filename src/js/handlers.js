@@ -16,7 +16,8 @@ export function elementsInit() {
         popOver: document.querySelector('#mypopover'),
         inputSize: document.querySelector("#input__size"),
         submitBtn: document.querySelector(".submit__btn"),
-        errorSpan: document.querySelector(".error__size-span")
+        errorSpan: document.querySelector(".error__size-span"),
+        clearBtn: document.querySelector(".clear__btn")
     }
 }
 
@@ -54,6 +55,7 @@ export function handlePrompt() {
   let size = elements.inputSize.value;
   let checker = validateInput(size);
   if(!checker) return;
+  localStorage.setItem("size", size)
   elements.popOver.hidePopover();
   gridRender(size, elements.gridContainer) 
   handleHover(elements.gridContainer)
