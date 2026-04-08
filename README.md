@@ -1,6 +1,4 @@
 # Etch-a-Sketch 🎨
-![project](./src/assets/etch-a-sketch.jpeg)
-
 A browser-based Etch-a-Sketch drawing app built using **Vanilla
 JavaScript**, **CSS**, and **Vite**.
 
@@ -60,7 +58,8 @@ Build for production:
 
 ## 👤 Author
 
-**Reymark Magsanay**
+**ryekram**
+https://github.com/ryekram/
 
 ------------------------------------------------------------------------
 
