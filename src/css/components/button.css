@@ -11,5 +11,15 @@
 }
 
 .prompt__button {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.btn-control {
+  display: flex;
+  justify-content: center; /* horizontal center */
+  align-items: center; /* vertical center */
+  font-size: 0.7rem;
+  width: min(350px, 90%);
+  padding: 15px 20px;
+  white-space: nowrap;
 }

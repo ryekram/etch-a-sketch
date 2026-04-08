@@ -3,6 +3,7 @@
 @import "components/input.css";
 
 :root {
+  ---outline-color: rgba(206, 206, 206, 0.705);
   --box-shadow: 5px 3px 12px -1px rgba(175, 175, 175, 0.902);
 }
 
@@ -26,9 +27,9 @@ body {
 .sketch__area {
   width: 80%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 2rem;
 }
 
 .grid__container {
@@ -39,5 +40,18 @@ body {
 }
 
 .grid__cell {
-  background-color: #cacaca;
+  background-color: #f7f7f7;
+  border: 0.5px solid var(---outline-color);
+}
+
+.sketch__controls {
+  padding: 3rem;
+  border: 1px solid var(---outline-color);
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 512px;
 }
